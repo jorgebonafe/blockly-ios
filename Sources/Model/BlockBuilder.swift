@@ -214,7 +214,7 @@ public final class BlockBuilder: NSObject {
 		self.nextConnectionTypeChecks = typeChecks
 	}
 	
-	public func setStartHat(_ enabled: Bool) {
+	public func setBlockStartHat(_ enabled: Bool) {
 		self.startHat = enabled
 	}
 

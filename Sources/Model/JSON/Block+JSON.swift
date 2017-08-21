@@ -99,7 +99,7 @@ extension Block {
       }
     }
 		if let blockStartHat = json[PARAMETER_START_HAT] as? Bool {
-			builder.setStartHat(true)
+			builder.setBlockStartHat(true)
 		}
     if let nextStatement = json[PARAMETER_NEXT_STATEMENT] {
       if let typeCheck = nextStatement as? String {
