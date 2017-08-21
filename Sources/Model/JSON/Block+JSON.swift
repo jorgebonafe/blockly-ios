@@ -31,6 +31,7 @@ extension Block {
   fileprivate static let PARAMETER_NEXT_STATEMENT = "nextStatement"
   fileprivate static let PARAMETER_OUTPUT = "output"
   fileprivate static let PARAMETER_PREVIOUS_STATEMENT = "previousStatement"
+  fileprivate static let PARAMETER_START_HAT = "startHat"
   fileprivate static let PARAMETER_TOOLTIP = "tooltip"
   fileprivate static let PARAMETER_TYPE = "type"
   fileprivate static let MESSAGE_PARAMETER_ALT = "alt"
@@ -97,6 +98,9 @@ extension Block {
         try builder.setPreviousConnection(enabled: true)
       }
     }
+		if let blockStartHat = json[PARAMETER_START_HAT] as? Bool {
+			builder.setStartHat(true)
+		}
     if let nextStatement = json[PARAMETER_NEXT_STATEMENT] {
       if let typeCheck = nextStatement as? String {
         try builder.setNextConnection(enabled: true, typeChecks: [typeCheck])

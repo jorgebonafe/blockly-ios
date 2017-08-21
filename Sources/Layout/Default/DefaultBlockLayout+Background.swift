@@ -69,8 +69,8 @@ extension DefaultBlockLayout {
       self.outputConnector = (layout.block.outputConnection != nil)
       self.previousStatementConnector = (layout.block.previousConnection != nil)
       self.nextStatementConnector = (layout.block.nextConnection != nil)
-      self.startHat = !previousStatementConnector && !outputConnector &&
-        layout.config.bool(for: DefaultLayoutConfig.BlockStartHat)
+      self.startHat = (!previousStatementConnector && !outputConnector &&
+        layout.config.bool(for: DefaultLayoutConfig.BlockStartHat)) || layout.block.startHat
       self.leadingEdgeXOffset = outputConnector ?
         layout.config.workspaceUnit(for: DefaultLayoutConfig.PuzzleTabWidth) : 0
       self.leadingEdgeYOffset = startHat ?

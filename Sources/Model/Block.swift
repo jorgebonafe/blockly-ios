@@ -129,14 +129,18 @@ public final class Block : NSObject {
   public var movable: Bool {
     didSet { didSetProperty(movable, oldValue) }
   }
-  /// Flag indicating if this block has had its user interaction disabled
-  public var disabled: Bool  {
-    didSet { didSetProperty(disabled, oldValue) }
-  }
+	/// Flag indicating if this block has had its user interaction disabled
+	public var disabled: Bool  {
+		didSet { didSetProperty(disabled, oldValue) }
+	}
   /// Flag indicating if this block may be dragged by the user
   public var draggable: Bool {
     return movable && !shadow
   }
+	/// Flag indicating if block should have a hat by default
+	public var startHat: Bool {
+		didSet { didSetProperty(startHat, oldValue) }
+	}
   /// Flag indicating if this block can be edited. Updating this property automatically updates
   /// the `editable` property on all child fields.
   public var editable: Bool {
@@ -169,7 +173,7 @@ public final class Block : NSObject {
   internal init(
     uuid: String?, name: String, color: UIColor, inputs: [Input] = [], inputsInline: Bool,
     position: WorkspacePoint, shadow: Bool, tooltip: String, comment: String, helpURL: String,
-    deletable: Bool, movable: Bool, disabled: Bool, editable: Bool, outputConnection: Connection?,
+    deletable: Bool, movable: Bool, disabled: Bool, startHat: Bool, editable: Bool, outputConnection: Connection?,
     previousConnection: Connection?, nextConnection: Connection?, mutator: Mutator?,
     extensions: [BlockExtension]) throws
   {
@@ -177,6 +181,7 @@ public final class Block : NSObject {
     self.name = name
     self.color = color
     self.inputs = inputs
+		self.startHat = startHat
     self.inputsInline = inputsInline
     self.position = position
     self.shadow = shadow

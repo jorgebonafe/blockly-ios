@@ -38,6 +38,8 @@ public final class BlockBuilder: NSObject {
   public private(set) var outputConnectionTypeChecks: [String]?
   /// Specifies the next connection is enabled. Defaults to `false`.
   public private(set) var nextConnectionEnabled: Bool = false
+	/// Specifies if the block should have a hat by default
+  public private(set) var startHat: Bool = false
   /// Specifies the next connection type checks. Defaults to `nil`.
   public private(set) var nextConnectionTypeChecks: [String]?
   /// Specifies the previous connection is enabled. Defaults to `false`.
@@ -108,7 +110,7 @@ public final class BlockBuilder: NSObject {
     movable = block.movable
     editable = block.editable
     disabled = block.disabled
-
+		startHat = block.startHat
     outputConnectionEnabled = block.outputConnection != nil ? true : false
     outputConnectionTypeChecks = block.outputConnection?.typeChecks
     nextConnectionEnabled = block.nextConnection != nil ? true : false
@@ -172,7 +174,7 @@ public final class BlockBuilder: NSObject {
       uuid: uuid, name: name, color: color, inputs: inputs, inputsInline: inputsInline,
       position: position, shadow: shadow, tooltip: tooltip, comment: comment, helpURL: helpURL,
       deletable: deletable, movable: movable, disabled: disabled, editable: editable,
-      outputConnection: outputConnection, previousConnection: previousConnection,
+      outputConnection: outputConnection, previousConnection: previousConnection, startHat: startHat,
       nextConnection: nextConnection, mutator: mutatorCopy, extensions: extensions)
 
     return block
@@ -204,13 +206,17 @@ public final class BlockBuilder: NSObject {
    - throws:
    `BlocklyError`: Occurs if the builder already has an output connection.
    */
-  public func setNextConnection(enabled: Bool, typeChecks: [String]? = nil) throws {
-    if enabled && outputConnectionEnabled {
-      throw BlocklyError(.invalidBlockDefinition, BlockBuilder.CONFLICTING_CONNECTIONS_ERROR)
-    }
-    self.nextConnectionEnabled = enabled
-    self.nextConnectionTypeChecks = typeChecks
-  }
+	public func setNextConnection(enabled: Bool, typeChecks: [String]? = nil) throws {
+		if enabled && outputConnectionEnabled {
+			throw BlocklyError(.invalidBlockDefinition, BlockBuilder.CONFLICTING_CONNECTIONS_ERROR)
+		}
+		self.nextConnectionEnabled = enabled
+		self.nextConnectionTypeChecks = typeChecks
+	}
+	
+	public func setStartHat(_ enabled: Bool) {
+		self.startHat = enabled
+	}
 
   /**
    Specifies a previous connection on the builder, and optionally the type checks to go with it.
