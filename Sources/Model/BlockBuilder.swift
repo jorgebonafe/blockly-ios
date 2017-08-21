@@ -170,12 +170,12 @@ public final class BlockBuilder: NSObject {
     let inputs = inputBuilders.map({ $0.makeInput() })
     let mutatorCopy = mutator?.copyMutator()
 
-    let block = try Block(
-      uuid: uuid, name: name, color: color, inputs: inputs, inputsInline: inputsInline,
-      position: position, shadow: shadow, tooltip: tooltip, comment: comment, helpURL: helpURL,
-      deletable: deletable, movable: movable, disabled: disabled, editable: editable,
-      outputConnection: outputConnection, startHat: startHat, previousConnection: previousConnection,
-      nextConnection: nextConnection, mutator: mutatorCopy, extensions: extensions)
+		let block = try Block(
+			uuid: uuid, name: name, color: color, inputs: inputs, inputsInline: inputsInline,
+			position: position, shadow: shadow, tooltip: tooltip, comment: comment, helpURL: helpURL,
+			deletable: deletable, movable: movable, disabled: disabled, startHat: startHat,
+			editable: editable, outputConnection: outputConnection, previousConnection: previousConnection,
+			nextConnection: nextConnection, mutator: mutatorCopy, extensions: extensions)
 
     return block
   }

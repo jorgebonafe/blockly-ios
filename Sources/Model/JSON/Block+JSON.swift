@@ -98,8 +98,8 @@ extension Block {
         try builder.setPreviousConnection(enabled: true)
       }
     }
-		if json[PARAMETER_START_HAT] as? Bool {
-			builder.setBlockStartHat(true)
+		if let startHat = json[PARAMETER_START_HAT] as? Bool {
+			builder.setBlockStartHat(startHat)
 		}
     if let nextStatement = json[PARAMETER_NEXT_STATEMENT] {
       if let typeCheck = nextStatement as? String {
